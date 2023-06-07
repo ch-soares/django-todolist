@@ -1,0 +1,35 @@
+name: Aplicação Django
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PIPENV_NO_INHERIT: 1
+      PIPENV IGNORE_VIRTUALENVS: 1
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
+      - name: Copiar Configurações .env
+        run: |
+          cp contrib/env-sample .env
+      - name: Intalar Dependências
+        run: |
+          pip install pipenv
+          pipenv sync --dev
+      - name: Rodar Testes Automáticos
+        run: |
+          pipenv run pytest todolist
+      - name: Rodar flake8
+        run: |
+          pipenv run flake8
