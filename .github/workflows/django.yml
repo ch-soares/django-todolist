@@ -29,7 +29,11 @@ jobs:
           pipenv sync --dev
       - name: Rodar Testes Automáticos
         run: |
-          pipenv run pytest todolist
+          pipenv run pytest todolist --cov=todolist --cov-report=xml --cov-report=term
       - name: Rodar flake8
         run: |
           pipenv run flake8
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
