@@ -10,6 +10,8 @@ python-decouple = "*"
 [dev-packages]
 pytest-django = "*"
 flake8 = "*"
+pytest-cov = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.11"
