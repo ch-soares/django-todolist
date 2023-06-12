@@ -17,7 +17,22 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
                 <small class="text-danger">{{ form.nome.errors }}</small>
+
+<!--            Lista todas as tarefas pendentes-->
+
             </form>
+            <h3 class="mt-5">Tarefas Pendentes</h3>
+            {% for tarefa in tarefas_pendentes %}
+            <form action="">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox para tarefa">
+                    </div>
+                        <input value="{{ tarefa.nome }}" type="text" class="form-control" aria-label="Text input para terefa">
+                </div>
+            </form>
+            {% endfor %}
+
         </div>
     </div>
 </div>
