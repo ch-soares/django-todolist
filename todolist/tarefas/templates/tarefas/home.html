@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h1 class="mt-5">Lista de Tarefas</h1>
+            <h1 class="mt-5">Incluir Tarefa</h1>
             <form action="{% url 'tarefas:home' %}" method="post">
                 {% csrf_token %}
                 <div class="input-group mb-3">
@@ -17,18 +17,27 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
                 <small class="text-danger">{{ form.nome.errors }}</small>
-
-<!--            Lista todas as tarefas pendentes-->
-
             </form>
+            <!--            Lista todas as tarefas pendentes-->
             <h3 class="mt-5">Tarefas Pendentes</h3>
             {% for tarefa in tarefas_pendentes %}
-            <form action="">
+            <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+                {% csrf_token %}
                 <div class="input-group mb-3">
-                    <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox para tarefa">
-                    </div>
-                        <input value="{{ tarefa.nome }}" type="text" class="form-control" aria-label="Text input para terefa">
+                    <input name="nome" type="text" class="form-control" placeholder="{{ tarefa.nome }}" required="required" aria-label="Descreva sua tarefa" value="{{ tarefa.nome }}">
+                    <input type="hidden" value="checked" name="feita">
+                    <button type="submit" class="btn btn-success">Marcar como Feita</button>
+                </div>
+            </form>
+            {% endfor %}
+
+            <h3 class="mt-5">Tarefas Concluídas</h3>
+            {% for tarefa in tarefas_feitas %}
+            <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input name="nome" type="text" class="form-control" placeholder="{{ tarefa.nome }}" required="required" aria-label="Descreva sua tarefa" value="{{ tarefa.nome }}">
+                    <button type="submit" class="btn btn-warning">Marcar como Pendente</button>
                 </div>
             </form>
             {% endfor %}
