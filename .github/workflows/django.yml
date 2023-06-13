@@ -23,7 +23,7 @@ jobs:
       - name: Copiar Configurações .env
         run: |
           cp contrib/env-sample .env
-      - name: Intalar Dependências
+      - name: Instalar Dependências
         run: |
           pip install pipenv
           pipenv sync --dev
