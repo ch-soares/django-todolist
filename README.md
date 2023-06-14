@@ -49,7 +49,7 @@ Em realizado esta operação, a tarefa é listada logo abaixo do título: Tarefa
 
 Clicando no botão "Marcar como Feita" a tarefa volta ao status original de sua criação, isto é: pendente. Se clicado no de "Apagar", a tarefa é excluída.
 
-A página foi criada com o auxílio do Bootstrap5, cuja vantagem é o desenvolvimento rápido, funcional e seguro de uma aplicação web. 
+A página foi criada com o auxílio do Bootstrap5, cuja vantagem é o desenvolvimento rápido, funcional e seguro para aplicações frontend. 
 
 Neste projeto, foram abordados e colocados em prática temas caros para o melhor desenvolvimento de software, a saber:
 - Biblioteca Python Decouple, para gerenciar variáveis de ambientes;
