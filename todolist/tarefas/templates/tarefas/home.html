@@ -1,49 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>TodoList</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h1 class="mt-5">Incluir Tarefa</h1>
-            <form action="{% url 'tarefas:home' %}" method="post">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                    <input name="nome" type="text" class="form-control" placeholder="Descreva sua tarefa" aria-label="Descreva sua tarefa" aria-describedby="button-addon2">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-                <small class="text-danger">{{ form.nome.errors }}</small>
-            </form>
-            <!--            Lista todas as tarefas pendentes-->
-            <h3 class="mt-5">Tarefas Pendentes</h3>
-            {% for tarefa in tarefas_pendentes %}
-            <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                    <input name="nome" type="text" class="form-control" placeholder="{{ tarefa.nome }}" required="required" aria-label="Descreva sua tarefa" value="{{ tarefa.nome }}">
-                    <input type="hidden" value="checked" name="feita">
-                    <button type="submit" class="btn btn-success">Marcar como Feita</button>
-                </div>
-            </form>
-            {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+<!--            Rotina para incluir tarefa-->
+                <h1 class="mt-5">Incluir Tarefa</h1>
+                <form action="{% url 'tarefas:home' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input name="nome" type="text" class="form-control" placeholder="Descreva sua tarefa"
+                               aria-label="Descreva sua tarefa" aria-describedby="button-addon2">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                    <small class="text-danger">{{ form.nome.errors }}</small>
+                </form>
 
-            <h3 class="mt-5">Tarefas Concluídas</h3>
-            {% for tarefa in tarefas_feitas %}
-            <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                    <input name="nome" type="text" class="form-control" placeholder="{{ tarefa.nome }}" required="required" aria-label="Descreva sua tarefa" value="{{ tarefa.nome }}">
-                    <button type="submit" class="btn btn-warning">Marcar como Pendente</button>
-                </div>
-            </form>
-            {% endfor %}
+<!--            Rotina para listar tarefas pendentes-->
+                <h3 class="mt-5">Tarefas Pendentes</h3>
+                {% for tarefa in tarefas_pendentes %}
+                <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input name="nome" type="text" class="form-control" placeholder="{{ tarefa.nome }}"
+                               required="required" aria-label="Descreva sua tarefa" value="{{ tarefa.nome }}">
+                        <input type="hidden" value="checked" name="feita">
+                        <button type="submit" class="btn btn-success">Marcar como Feita</button>
+                    </div>
+                </form>
+                {% empty %}
+                <p>Não há tarefas pendentes</p>
+                {% endfor %}
 
+<!--            Rotina para apagar e listar tarefas concluídas-->
+                <h3 class="mt-5">Tarefas Concluídas</h3>
+                {% for tarefa in tarefas_feitas %}
+                <div class="row">
+                    <div class="col-1">
+<!--            Apagar tarefas concluídas-->
+                        <form action="{% url 'tarefas:apagar' tarefa_id=tarefa.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <button type="submit" class="btn btn-danger">Apagar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-11">
+<!--            Listar tarefas concluídas-->
+                        <form action="{% url 'tarefas:detalhe' tarefa_id=tarefa.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <input name="nome" type="text" class="form-control" placeholder="{{ tarefa.nome }}"
+                                       required="required" aria-label="Descreva sua tarefa" value="{{ tarefa.nome }}">
+                                <button type="submit" class="btn btn-warning">Marcar como Pendente</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Não há tarefas concluídas</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
