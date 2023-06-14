@@ -9,7 +9,7 @@
 Supondo que tenha Git e Python (versao: > 3.11) devidamente instalados, no terminal dê os comandos:
 
 ```commandline
-git clone https://github.com/ch-soares/curso-django.git
+git clone https://github.com/ch-soares/django-todolist.git
 cd django-todolist
 cp contrib/env-sample .env
 python -m pip install pipenv
