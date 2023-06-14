@@ -37,15 +37,15 @@ python manage.py runserver
 
 Consiste em realizar um todolist em que no topo da página possui um campo para inserção de tarefas.
 
-![Captura de tela de 2023-06-13 16-25-49.png](..%2F..%2FImagens%2FCaptura%20de%20tela%20de%202023-06-13%2016-25-49.png)
+![Captura de tela de 2023-06-13 16-25-49](https://github.com/ch-soares/django-todolist/assets/65301099/d913b756-10c9-4ab6-822c-00a10fa97977)
 
 Ao criar uma nova tarefa, esta é listada logo abaixo do título: Tarefas Pendentes, que possui um botão para marcar esta tarefa como feita.
 
-![Captura de tela de 2023-06-14 14-57-27.png](..%2F..%2FImagens%2FCaptura%20de%20tela%20de%202023-06-14%2014-57-27.png)
+![Captura de tela de 2023-06-14 14-57-27](https://github.com/ch-soares/django-todolist/assets/65301099/6cd40fdf-d638-409b-a02a-7c4d3533f61b)
 
 Em realizado esta operação, a tarefa é listada logo abaixo do título: Tarefas Concluídas, que, por sua vez, possui um botão para marcá-la como pendente e um botão à esquerda para apagar a tarefa.
 
-![Captura de tela de 2023-06-14 14-55-37.png](..%2F..%2FImagens%2FCaptura%20de%20tela%20de%202023-06-14%2014-55-37.png)
+![Captura de tela de 2023-06-14 14-55-37](https://github.com/ch-soares/django-todolist/assets/65301099/70d628ae-1dba-4f41-94fd-b9776a50fb3a)
 
 Clicando no botão "Marcar como Feita" a tarefa volta ao status original de sua criação, isto é: pendente. Se clicado no de "Apagar", a tarefa é excluída.
 
